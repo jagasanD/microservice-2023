@@ -1,0 +1,15 @@
+package com.example.photoAppUser.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class AppUser {
+
+	private Long id;
+	
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	
+}

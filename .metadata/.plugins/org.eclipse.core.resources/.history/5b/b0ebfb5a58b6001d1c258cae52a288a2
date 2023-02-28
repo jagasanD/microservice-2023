@@ -1,0 +1,5 @@
+package com.example.photoAppUser.security;
+
+public class AuthenticateFilter {
+
+}

@@ -1,0 +1,13 @@
+package com.example.photoDiscoveryServer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PhotoDiscoveryServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PhotoDiscoveryServerApplication.class, args);
+	}
+
+}

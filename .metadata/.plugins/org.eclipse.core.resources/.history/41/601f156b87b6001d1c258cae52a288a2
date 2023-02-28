@@ -1,0 +1,10 @@
+package com.example.APIGateway;
+
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+
+public class AuthorizationFilter extends AbstractGatewayFilterFactory<AuthorizationFilter.Config>{
+
+	public static class Config{
+		
+	}
+}

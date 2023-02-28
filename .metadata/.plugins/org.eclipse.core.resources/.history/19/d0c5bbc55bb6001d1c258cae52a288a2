@@ -1,0 +1,9 @@
+package com.example.photoAppUser.service;
+
+import com.example.photoAppUser.dto.CreateUserRequestModel;
+import com.example.photoAppUser.utility.ResponsePayLoad;
+
+public interface UserService {
+
+	public ResponsePayLoad createUser(CreateUserRequestModel userDetails);
+}

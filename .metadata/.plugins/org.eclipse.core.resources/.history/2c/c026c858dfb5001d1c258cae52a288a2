@@ -1,0 +1,14 @@
+package com.example.photoAppUser.utility;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class ResponsePayLoad {
+
+	private String message;
+	private String statusCode;
+	private Object payload;
+	
+	
+	
+}

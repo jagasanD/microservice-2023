@@ -1,0 +1,7 @@
+package com.example.photoAppUser.serviceImpl;
+
+import com.example.photoAppUser.service.UserService;
+
+public class UserServiceImpl implements UserService{
+
+}

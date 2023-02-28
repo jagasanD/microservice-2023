@@ -1,0 +1,39 @@
+package com.example.photoAppUser.serviceImpl;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.photoAppUser.dto.CreateUserRequestModel;
+import com.example.photoAppUser.entity.AppUser;
+import com.example.photoAppUser.repository.UserRepository;
+import com.example.photoAppUser.service.UserService;
+import com.example.photoAppUser.utility.ResponsePayLoad;
+
+@Service
+public class UserServiceImpl implements UserService{
+
+	@Autowired
+	UserRepository userRepository;
+	@Override
+	public ResponsePayLoad createUser(CreateUserRequestModel userDetails) {
+		
+		saveUser(userDetails);
+		return null;
+	}
+	private void saveUser(CreateUserRequestModel userDetails) {
+		
+		AppUser user =null;
+		if(userDetails.getId()==null) {
+			user = new AppUser();
+			userDetails.setUserId(UUID.randomUUID().toString());
+		}else {
+			user =userRepository.findById(userDetails.getId()).get();
+		}
+		user.setEmail(userDetails.getEmail());
+		user.setEncryptedPassword(userDetails.getEncryptedPassword());
+		
+	}
+
+}

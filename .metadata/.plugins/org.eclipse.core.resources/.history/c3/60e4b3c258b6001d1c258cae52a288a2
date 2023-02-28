@@ -1,0 +1,7 @@
+package com.example.photoAppUser.security;
+
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+public class AuthenticateFilter extends UsernamePasswordAuthenticationFilter{
+
+}

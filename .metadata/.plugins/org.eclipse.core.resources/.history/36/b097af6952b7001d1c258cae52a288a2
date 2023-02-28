@@ -1,0 +1,13 @@
+package com.example.ConfigServerApi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ConfigServerApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigServerApiApplication.class, args);
+	}
+
+}

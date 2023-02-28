@@ -1,0 +1,5 @@
+package com.example.photoAppUser.model;
+
+public class CreateUserRequestModel {
+
+}

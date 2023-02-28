@@ -1,0 +1,19 @@
+package com.example.APIGateway;
+
+import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.stereotype.Component;
+@Component
+public class AuthorizationFilter extends AbstractGatewayFilterFactory<AuthorizationFilter.Config>{
+
+	public static class Config{
+		
+	}
+
+	@Override
+	public GatewayFilter apply(Config config) {
+		// TODO Auto-generated method stub
+		System.out.println("************** calling Gateway API router filter **************");
+		return null;
+	}
+}
