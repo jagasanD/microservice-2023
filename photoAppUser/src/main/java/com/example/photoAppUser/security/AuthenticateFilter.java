@@ -81,6 +81,7 @@ public class AuthenticateFilter extends UsernamePasswordAuthenticationFilter{
 		 * SignatureAlgorithm.HS512).compact();
 		 */
 	Long JWT_TOKEN_VALIDITY =Long.parseLong(environment.getProperty("tocken.expiration_time"));
+	System.out.println("Date of Expiration in millisecond    "+JWT_TOKEN_VALIDITY);
 		String token =  Jwts.builder().setSubject(user.getUserId()).setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
         .signWith(SignatureAlgorithm.HS512, tockenSec.getBytes(Charset.forName("UTF-8"))).compact();
