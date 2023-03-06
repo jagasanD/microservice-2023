@@ -20,6 +20,8 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 
 	@Autowired
 	Environment env;
+	@Autowired
+	PropertiesConfig propertiesConfig;
 	public AuthorizationFilter() {
 		super(Config.class);
 	}
@@ -30,6 +32,8 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 	public GatewayFilter apply(Config config) {
 		// TODO Auto-generated method stub
 		System.out.println("************** calling Gateway API router filter **************");
+		System.out.println("**********************Message******************"+propertiesConfig.getGlobalmessage());
+		
 		return (exchange, chain) -> {
 			ServerHttpRequest req = exchange.getRequest();
 			if (!req.getHeaders().containsKey("Authorization")) {

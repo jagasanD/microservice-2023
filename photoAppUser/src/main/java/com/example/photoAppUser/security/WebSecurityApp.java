@@ -51,6 +51,8 @@ public class WebSecurityApp {
         .requestMatchers(HttpMethod.POST, "/users/save").permitAll()
         .requestMatchers(HttpMethod.POST, "/users/login").permitAll()
         .requestMatchers(HttpMethod.GET, "/users/status/check").permitAll()
+        .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
+        .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
        // .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
         .and()
         .addFilter(authenticationFilter)

@@ -2,6 +2,12 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\PhotoAppApiAlbums-master"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\testConfigServer"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-config-server\ConfigServerApi"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\ConfigServerApi"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\APIGateway"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\photoAppAccountManagement"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\photoDiscoveryServer"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\photoAppUser"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\photoAppDiscoveryServer"/>

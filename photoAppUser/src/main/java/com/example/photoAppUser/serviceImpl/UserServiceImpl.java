@@ -1,18 +1,24 @@
 package com.example.photoAppUser.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.hc.core5.http.HttpStatus;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.photoAppUser.dto.AlbumResponseModel;
 import com.example.photoAppUser.dto.CreateUserRequestModel;
+import com.example.photoAppUser.dto.UserResponseModel;
 import com.example.photoAppUser.entity.AppUser;
+import com.example.photoAppUser.feignClient.AlbumFeignClient;
 import com.example.photoAppUser.repository.UserRepository;
 import com.example.photoAppUser.service.UserService;
 import com.example.photoAppUser.utility.ResponsePayLoad;
@@ -23,6 +29,10 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepository userRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	RestTemplate restTemplate;
+	@Autowired
+	AlbumFeignClient userFeignClient;
 	@Override
 	public ResponsePayLoad createUser(CreateUserRequestModel userDetails) {
 		
@@ -59,6 +69,35 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public AppUser getUserByEmail(String email) {
 		return  userRepository.findByEmail(email);
+	}
+	@Override
+	public UserResponseModel getUserByUserId(String id) {
+		AppUser user= userRepository.findByUserId(id);
+		
+		UserResponseModel userModel = new ModelMapper().map(user, UserResponseModel.class);
+		/*String albumUrl = String.format("http://ALBUMS-WS/users/%s/albums", id);
+		 * ResponseEntity<List<AlbumResponseModel>> albumResponse = restTemplate.
+				exchange(albumUrl, HttpMethod.GET,null,new 
+						ParameterizedTypeReference<List<AlbumResponseModel>>() {
+				});
+				List<AlbumResponseModel> albumList = albumResponse.getBody();
+				*/
+		List<AlbumResponseModel> albumList = userFeignClient.getAlbums(id);
+		
+		userModel.setAlbums(albumList);
+		return userModel;
+	}
+	@Override
+	public UserResponseModel getFailedUser() {
+		UserResponseModel userModel = new UserResponseModel();
+		List<AlbumResponseModel> albumList = userFeignClient.getAlbumsFail("FailedId");
+		userModel.setEmail("Failed@gmail.com");
+		userModel.setFirstName("Failed Person");
+		userModel.setLastName("Album");
+		userModel.setUserId("UserFailedId");
+		userModel.setAlbums(albumList);
+		
+		return userModel;
 	}
 
 }

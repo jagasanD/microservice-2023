@@ -68,18 +68,8 @@ public class AuthenticateFilter extends UsernamePasswordAuthenticationFilter{
 		System.out.println("*********************calling2**************************");
 		String email = ((User)auth.getPrincipal()).getUsername();
 		AppUser user =usersService.getUserByEmail(email);
-		
 		String tockenSec =environment.getProperty("tocken.secret");
-		//byte[] secretKeyBytes = Base64.getEncoder().encode(tockenSec.getBytes());
-		//SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
-		//Instant now = Instant.now();
-		/*
-		 * String token = Jwts.builder().setSubject(user.getUserId()) .setExpiration(
-		 * Date.from(now.plusMillis(Long.parseLong(environment.getProperty(
-		 * "tocken.expiration_time")))))
-		 * .setIssuedAt(Date.from(now)).signWith(secretKey,
-		 * SignatureAlgorithm.HS512).compact();
-		 */
+		
 	Long JWT_TOKEN_VALIDITY =Long.parseLong(environment.getProperty("tocken.expiration_time"));
 	System.out.println("Date of Expiration in millisecond    "+JWT_TOKEN_VALIDITY);
 		String token =  Jwts.builder().setSubject(user.getUserId()).setIssuedAt(new Date(System.currentTimeMillis()))
