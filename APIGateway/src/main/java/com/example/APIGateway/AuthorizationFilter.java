@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
 
 import io.jsonwebtoken.Jwts;
@@ -22,6 +23,13 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 	Environment env;
 	@Autowired
 	PropertiesConfig propertiesConfig;
+	
+	@Autowired
+	RouteValidator routeValidator;
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
 	public AuthorizationFilter() {
 		super(Config.class);
 	}
@@ -30,20 +38,21 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 	}
 	@Override
 	public GatewayFilter apply(Config config) {
-		// TODO Auto-generated method stub
-		System.out.println("************** calling Gateway API router filter **************");
-		System.out.println("**********************Message******************"+propertiesConfig.getGlobalmessage());
-		
+		System.out.println("************** calling Gateway API router filter **************");		
 		return (exchange, chain) -> {
+			
+			if(routeValidator.isSecured.test(exchange.getRequest())) {
 			ServerHttpRequest req = exchange.getRequest();
 			if (!req.getHeaders().containsKey("Authorization")) {
-				System.out.println("************** calling Gateway API header missing **************");
 				return OnError(exchange, "Not Authorized header", HttpStatus.UNAUTHORIZED);
 			}
 			String jwttoken = req.getHeaders().get("Authorization").get(0);
 			String jwtPrefix = jwttoken.replace("Bearer", "");
+			
+			//String response = restTemplate.getForObject("http://auth-server/auth/validate-token?token"+jwtPrefix.trim(), String.class);
 			if (!validateToken(jwtPrefix.trim())) {
 				return OnError(exchange, "JWT token not valid", HttpStatus.UNAUTHORIZED);
+			}
 			}
 			return chain.filter(exchange);
 		};
@@ -56,12 +65,12 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 	}
 
 	private boolean validateToken(String jwtToken) {
-		System.out.println("token ************ "+jwtToken);
 		try {
 			String subject = Jwts.parser().setSigningKey(env.getProperty("tocken.secret")
 					         .getBytes(Charset.forName("UTF-8")))
 							 .parseClaimsJws(jwtToken.replace("{", "")
-							 .replace("}","")).getBody().getSubject();			
+							 .replace("}",""))
+							 .getBody().getSubject();			
 			if (subject == null || subject.isEmpty()) {
 				return false;
 			}

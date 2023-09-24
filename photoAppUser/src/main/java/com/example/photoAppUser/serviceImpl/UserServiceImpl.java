@@ -1,15 +1,11 @@
 package com.example.photoAppUser.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.apache.hc.core5.http.HttpStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -58,14 +54,14 @@ public class UserServiceImpl implements UserService{
 		return new ResponsePayLoad("Successfully saved User!", HttpStatus.SC_OK+"",user);
 		
 	}
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+	/*public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		AppUser user = userRepository.findByEmail(email);
 		if(user==null) {
 			throw new UsernameNotFoundException(email);
 		}
 		return  new User(user.getEmail(), user.getEncryptedPassword(),true,true,true,true,new ArrayList<>());
-	}
+	}*/
 	@Override
 	public AppUser getUserByEmail(String email) {
 		return  userRepository.findByEmail(email);

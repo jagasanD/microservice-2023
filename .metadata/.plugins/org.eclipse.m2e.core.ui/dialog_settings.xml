@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\java8Coding"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\AuthoriaztionServer"/>
+			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\ractive-workspace\reactiveDemoApi"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\PhotoAppApiAlbums-master"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-2023\testConfigServer"/>
 			<item value="C:\Users\003JNH744\Desktop\micro-service-config-server\ConfigServerApi"/>

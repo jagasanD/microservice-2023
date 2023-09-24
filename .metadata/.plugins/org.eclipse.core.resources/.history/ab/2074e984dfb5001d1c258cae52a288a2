@@ -1,6 +1,0 @@
-package com.example.photoAppUser.service;
-
-public interface UserService {
-
-	public ResponsePayLoad createUser(CreateUserRequestModel userDetails);
-}

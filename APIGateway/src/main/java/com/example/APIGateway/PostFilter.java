@@ -1,4 +1,4 @@
-package com.example.APIGateway;
+/*package com.example.APIGateway;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,4 +25,4 @@ public class PostFilter implements GlobalFilter,Ordered{
 	public int getOrder() {
 		return 0;
 	}
-}
+}*/

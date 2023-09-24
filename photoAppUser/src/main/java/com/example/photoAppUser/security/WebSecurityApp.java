@@ -1,4 +1,4 @@
-package com.example.photoAppUser.security;
+/*package com.example.photoAppUser.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -64,4 +64,4 @@ public class WebSecurityApp {
 
     }
 
-}
+}*/

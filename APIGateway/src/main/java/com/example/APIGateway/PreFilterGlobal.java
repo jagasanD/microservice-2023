@@ -1,4 +1,4 @@
-package com.example.APIGateway;
+/*package com.example.APIGateway;
 
 
 import java.util.Set;
@@ -38,4 +38,4 @@ public class PreFilterGlobal implements GlobalFilter,Ordered{
 		return 0;
 	}
 
-}
+}*/

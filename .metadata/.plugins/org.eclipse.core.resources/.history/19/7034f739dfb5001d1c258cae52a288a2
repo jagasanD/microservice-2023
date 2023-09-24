@@ -1,9 +1,0 @@
-package com.example.photoAppUser.utility;
-
-public class ResponsePayLoad {
-
-	private String message;
-	private String statusCode;
-	private Object payload;
-	
-}

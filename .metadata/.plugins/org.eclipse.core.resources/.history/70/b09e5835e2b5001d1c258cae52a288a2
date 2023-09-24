@@ -1,5 +1,0 @@
-package com.example.photoAppUser.repository;
-
-public interface UserRepository {
-
-}
